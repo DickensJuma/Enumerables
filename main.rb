@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/CyclomaticComplexity, Metrics/ModuleLength, Metrics/MethodLength, Metrics/PerceivedComplexity
+# rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 
 module Enumerable
   def my_each
@@ -28,13 +28,13 @@ module Enumerable
   end
 
   def my_all?
-		if block_given?
-			self.my_each {|item| return false unless yield(item)}
-		else
-			self.my_each {|item| return false unless item}
-		end
-		return true
-	end
+    if block_given?
+      my_each { |item| return false unless yield(item) }
+    else
+      my_each { |item| return false unless item }
+    end
+    true
+  end
 
   def my_none?(*args)
     if block_given?
@@ -102,4 +102,4 @@ module Enumerable
   end
 end
 
-# rubocop: enable Metrics/CyclomaticComplexity, Metrics/ModuleLength, Metrics/MethodLength, Metrics/PerceivedComplexity
+# rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 # 1. my_each
 #   puts
 #   print [1, 2, 3].my_each { |elem| print (n+ 1).to_s + " "} # => 2 3 4

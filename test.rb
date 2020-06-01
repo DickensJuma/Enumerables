@@ -1,11 +1,11 @@
-# 1. my_each
+#   my_each
 #   puts
-#   print [1, 2, 3].my_each { |elem| print (n+ 1).to_s + " "} # => 2 3 4
+#   print [1, 2, 3].my_each { |n| print (n+ 1).to_s + " "} # => 2 3 4
 #
 
 #    my_each_with_index
 #   puts
-#   print [1, 2, 3].my_each_with_index { |elem, idx| puts "#{elem} : #{idx}" } # => 1 : 0, 2 : 1, 3 : 2
+#   print [1, 2, 3].my_each_with_index { |elem, i| puts "#{elem} : #{i}" } # => 1 : 0, 2 : 1, 3 : 2
 #
 
 #   my_select
@@ -37,7 +37,7 @@
 
 #    my_map
 #   p [1,2,3].my_map { |n| 2 * n } # => [2,4,6]
-#   p ["Hey", "Jude"].my_map { |n| n + "?" } # => ["marry?", "Juma?"]
+#   p ["marry", "Juma"].my_map { |n| n + "?" } # => ["marry?", "Juma?"]
 
 #    my_inject
 

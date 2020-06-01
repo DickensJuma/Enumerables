@@ -27,21 +27,14 @@ module Enumerable
     result
   end
 
-  def my_all?(arg = nil)
-    check = true
-    if arg.class == Class
-      my_each { |i| check = false unless arg == i }
-    elsif arg.class == Regexp
-      my_each { |i| check = false unless arg.match? i }
-    elsif block_given?
-      my_each { |i| check = false unless yield i }
-    elsif arg
-      my_each { |i| check = false unless arg == i }
-    else
-      my_each { |i| check = false unless i }
-    end
-    check
-  end
+  def my_all?
+		if block_given?
+			self.my_each {|item| return false unless yield(item)}
+		else
+			self.my_each {|item| return false unless item}
+		end
+		return true
+	end
 
   def my_none?(*args)
     if block_given?

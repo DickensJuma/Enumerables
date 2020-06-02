@@ -19,6 +19,7 @@
 #   p [-8, -9, -6].my_all? { |n| n < 0 } # => true
 #
 #    my_any?
+#   p [32,45,64].my_any?(Integer) # => true
 #   p [71, 10, 13, 5].my_any? { |n| n.even? } # => true
 #   p [27, 10, 4, 5].my_any?() { |n| n.even? } # => true
 #   p ["q", "r", "s", "i"].my_any? { |char| "aeiou".include?(char) } # => true

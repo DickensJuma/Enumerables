@@ -40,16 +40,20 @@ module Enumerable
     true
   end
 
-  def my_any?(*_arg)
-    return true unless block_given?
-
-    result = 0
-    while result < size
-      return true if yield(self[result])
-
-      result += 1
+  def my_any?(arg = nil)
+    my_each do |n|
+      if block_given?
+        return true if yield n
+      elsif arg.class == Class
+        return true if arg == n
+      elsif arg.class == Regexp
+        return true if arg =~ n
+      elsif arg
+        return true if arg == n
+      elsif n
+        return true
+      end
     end
-
     false
   end
 

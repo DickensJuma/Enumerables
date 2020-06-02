@@ -27,35 +27,34 @@ module Enumerable
     result
   end
 
-  def my_all?(arg = nil, &block)
-    return true if !block_given? && arg.nil? && include?(nil) == false && include?(false) == false
-    return false unless block_given? || !arg.nil?
-
-    if block_given?
-      my_each { |i| return false if block.call(i) == false }
-    elsif arg.class == Regexp
-      my_each { |i| return false if arg.match(i).nil? }
-    elsif arg.class <= Numeric || arg.class <= String
-      my_each { |i| return false if i != arg }
-    else
-      my_each { |i| return false if (i.is_a? arg) == false }
+  def my_all?(arg = nil)
+    my_each do |i|
+      if block_given?
+        return false unless yield i
+      elsif arg.class == Class
+        return false unless arg == i
+      elsif arg.class == Regexp
+        return false unless arg =~ i
+      else
+        return false unless i
+      end
     end
     true
   end
 
-  def my_any?(arg = nil, &block)
-    return false unless block_given? || !arg.nil? || arg.nil? && arg == false
-
-    if block_given?
-      my_each { |i| return true if block.call(i) }
-    elsif arg.class == Regexp
-      my_each { |i| return true unless arg.match(i).nil? }
-    elsif arg.class <= Numeric || arg.class <= String
-      my_each { |i| return true if i == arg }
-    elsif !block_given? & arg.nil? & arg == false
-      return false
-    else
-      my_each { |i| return true if i.class <= arg }
+  def my_any?(arg = nil)
+    my_each do |i|
+      if block_given?
+        return true if yield i
+      elsif arg.class == Class
+        return true if arg == i
+      elsif arg.class == Regexp
+        return true if arg =~ i
+      elsif arg
+        return true if arg == i
+      elsif value
+        return true
+      end
     end
     false
   end

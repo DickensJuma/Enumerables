@@ -27,32 +27,32 @@ module Enumerable
     result
   end
 
-  def my_all?
-    return true unless block_given?
-
-    result = 0
-    while result < size
-      return false unless yield(self[result])
-
-      result += 1
+  def my_all?(arg = nil)
+    if block_given?
+      my_each { |i| return false unless yield(i) }
+    elsif arg.is_a? Class
+      my_each { |i| return false unless i.is_a? arg }
+    elsif arg.is_a? Regexp
+      my_each { |i| return false unless arg =~ i }
+    elsif arg.nil?
+      my_each { |i| return false unless i }
+    else
+      my_each { |i| return false unless i == arg }
     end
-
     true
   end
 
   def my_any?(arg = nil)
-    my_each do |n|
-      if block_given?
-        return true if yield n
-      elsif arg.class == Class
-        return true if arg == n
-      elsif arg.class == Regexp
-        return true if arg =~ n
-      elsif arg
-        return true if arg == n
-      elsif n
-        return true
-      end
+    if block_given?
+      my_each { |i| return true if yield(i) }
+    elsif arg.is_a? Class
+      my_each { |i| return true if i.is_a? arg }
+    elsif arg.is_a? Regexp
+      my_each { |i| return true if arg =~ i }
+    elsif arg.nil?
+      my_each { |i| return true if i }
+    else
+      my_each { |i| return true if i == arg }
     end
     false
   end

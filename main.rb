@@ -120,6 +120,14 @@ module Enumerable
     my_each { |i| arg = arg.nil? ? i : block.yield(arg, i) }
     arg
   end
+
+
+  def multiply_els(array)
+    array.my_inject(:*)
+  end
+
 end
+
+
 
 # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity

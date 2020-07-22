@@ -14,7 +14,7 @@ module Enumerable
     return enum_for(:my_each) unless block_given?
 
     0.upto(to_a.size - 1) do |i|
-      yield to_a[i], i
+      yield i,to_a[i]
     end
     to_a
   end

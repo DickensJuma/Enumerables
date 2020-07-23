@@ -14,7 +14,7 @@ module Enumerable
     return enum_for(:my_each) unless block_given?
 
     0.upto(to_a.size - 1) do |i|
-      yield to_a[i], i
+      yield i, to_a[i]
     end
     to_a
   end
@@ -121,13 +121,9 @@ module Enumerable
     arg
   end
 
-
   def multiply_els(array)
     array.my_inject(:*)
   end
-
 end
-
-
 
 # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity

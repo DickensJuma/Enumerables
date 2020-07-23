@@ -37,7 +37,7 @@
 #
 
 #    my_map
-#   p [1,2,3].my_map { |n| 2 * n } # => [2,4,6]
+#   p [1,2,3,4,5].my_map { |n| 2 * n } # => [2,4,6,8,10]
 #   p ["marry", "Juma"].my_map { |n| n + "?" } # => ["marry?", "Juma?"]
 
 #    my_inject
